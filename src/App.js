@@ -1,11 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import DragAndDrop from './DragAndDrop'
+import FileUploader from './FileUploader';
+import UploadProgress from './UploadProgress';
+import ResultList from './ResultList.js';
+import { useFilePicker } from 'use-file-picker';
 
 function App() {
 
   const [files, setFiles] = useState([]);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [openFileSelector] = useFilePicker({
+    accept: [
+      '.csv',
+      '.pdf',
+      '.xls',
+      '.xlxs'
+    ],
+    multiple: false,
+  });
 
   const handleDrop = (newFiles) => {
     // filesはuseStateから来るので，deep copyしておかないと参照が変わらず変更がフックされない
@@ -17,42 +29,39 @@ function App() {
     setFiles(fileList);
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Hello value="False" />
-        <DragAndDrop handleDrop={handleDrop}>
-          <div style={{height: 300, width: 250}}>
-            {files.map((file, i) =>
-            <div key={i}>{file.name}</div>
-            )}
-          </div>
-        </DragAndDrop>
-      </header>
-    </div>
-  );
-}
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
-const Hello = (props) => {
-  const [test, setTest] = useState(props.value);
+  async function doProgress() {
+    await sleep(1000);
+
+    for (let i = 0; i < 100; i++) {
+      sleep(100).then(() => {
+        setUploadProgress(uploadProgress + 5);
+      });
+    }
+  }
+
+  doProgress();
+
+  const results = [
+    {name: "てすと", invalid_cells: ["1-1", "1-2"]},
+    {name: "てすと2", invalid_cells: ["2-1", "2-2"]},
+  ];
+
   return (
     <div>
-      <p>{test}</p>
-      <button onClick={() => {
-        setTest(test === "False" ? "True" : "False");
-      }}>press me</button>
+      <header>
+        Open Data Linter
+      </header>
+      <center>
+        <div>
+          <FileUploader handleDrop={handleDrop} pickFile={openFileSelector} />
+          <UploadProgress uploadProgress={uploadProgress} />
+          <ResultList results={results} />
+        </div>
+      </center>
     </div>
   );
 }
