@@ -4,40 +4,65 @@ import FileUploader from './FileUploader';
 import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
 import axios from 'axios';
+import {
+  Switch,
+  Route,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
+const InitialMode = 0;
 const UploadMode = 1;
-const ViewInvalidMode = 2; // eslint-disable-line
 
 function App() {
 
   const [file, setFile] = useState(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [results, setResults] = useState([]);
-  const [mode, setMode] = useState(UploadMode); // eslint-disable-line
+  const [initialResult, setInitialResult] = useState([]);
+  const [mode, setMode] = useState(InitialMode);
+
+  let history = useHistory();
+  let location = useLocation();
 
   useEffect(() => {
-    if (mode === UploadMode) {
+    if (location.pathname === "/") {
+      setMode(InitialMode);
       axios.request({
         method: 'get',
-        url: 'https://csvlinter.volare.site/'
+        url: 'https://opendatalinter.volare.site/'
       }).then(data => {
-        setResults(data.data);
-        console.log(data.data);
+        setInitialResult(data.data);
+        console.log("Initial :", data.data);
       });
+      setUploadProgress(0);
     }
-  }, [mode]);
+  }, [location]);
+
+  const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   useEffect(() => {
-    if (file === undefined || file == null) return;
+    if (file === undefined || file === null) return;
+
+    setMode(UploadMode);
+    setResults(initialResult);
 
     const submitData = new FormData();
     submitData.append("file", file);
     axios.request({
       method: 'post',
-      url: 'https://csvlinter.volare.site/',
+      url: 'https://opendatalinter.volare.site/',
       data: submitData,
       onUploadProgress: (e) => {
-        setUploadProgress(Math.floor(e.loaded / e.total * 100));
+        setUploadProgress(e.loaded / e.total * 100);
+        if (e.loaded === e.total) {
+          sleep(50).then(() => {
+            setMode(InitialMode);
+            history.push("/result");
+          });
+        }
       }
     }).then(data => {
       console.log("Success: ", data);
@@ -45,6 +70,8 @@ function App() {
     }).catch(error => {
       console.log("Error: ", error);
     });
+  // setInitialResultとhistoryを更新しているが，無限ループにはならないので無視
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   return (
@@ -56,9 +83,15 @@ function App() {
       </header>
       <main class="main">
         <div class="mainInner">
-          <FileUploader setFile={setFile} />
-          <UploadProgress uploadProgress={uploadProgress} file={file} />
-          <ResultList results={results} />
+          <Switch>
+            <Route path="/result">
+              <ResultList results={results} file={file} />
+            </Route>
+            <Route path="/">
+              { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
+              { mode === InitialMode && <FileUploader setFile={setFile} /> }
+            </Route>
+          </Switch>
         </div>
       </main>
     </div>
