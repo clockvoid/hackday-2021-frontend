@@ -37,7 +37,7 @@ function App() {
       url: 'https://csvlinter.volare.site/',
       data: submitData,
       onUploadProgress: (e) => {
-        setUploadProgress(e.loaded / e.total * 100);
+        setUploadProgress(Math.floor(e.loaded / e.total * 100));
       }
     }).then(data => {
       console.log("Success: ", data);
