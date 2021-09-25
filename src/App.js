@@ -5,11 +5,27 @@ import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
 import axios from 'axios';
 
+const UploadMode = 1;
+const ViewInvalidMode = 2; // eslint-disable-line
+
 function App() {
 
   const [file, setFile] = useState(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [results, setResults] = useState([]);
+  const [mode, setMode] = useState(UploadMode); // eslint-disable-line
+
+  useEffect(() => {
+    if (mode === UploadMode) {
+      axios.request({
+        method: 'get',
+        url: 'https://csvlinter.volare.site/'
+      }).then(data => {
+        setResults(data.data);
+        console.log(data.data);
+      });
+    }
+  }, [mode]);
 
   useEffect(() => {
     if (file === undefined || file == null) return;
