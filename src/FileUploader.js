@@ -1,5 +1,6 @@
 import DragAndDrop from './DragAndDrop'
 import { useFilePicker } from 'use-file-picker';
+import { useEffect } from 'react';
 
 const FileUploader = (props) => {
 
@@ -17,10 +18,14 @@ const FileUploader = (props) => {
     multiple: false,
   });
 
-  if (plainFiles.length > 0) {
-    props.setFile(plainFiles[0]);
-    clear();
-  }
+  useEffect(() => {
+    if (plainFiles.length > 0) {
+      props.setFile(plainFiles[0]);
+      clear();
+    }
+  // clearとpropsを参照しているが，無限ループにはならないので無視
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plainFiles]);
 
   return (
     <div className="fileUploader">
