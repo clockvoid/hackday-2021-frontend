@@ -5,15 +5,14 @@ import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
 import axios from 'axios';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
+  useHistory,
+  useLocation
 } from "react-router-dom";
 
 const InitialMode = 0;
 const UploadMode = 1;
-const RenderResultMode = 2;
 
 function App() {
 
@@ -22,18 +21,12 @@ function App() {
   const [results, setResults] = useState([]);
   const [mode, setMode] = useState(InitialMode);
 
+  let history = useHistory();
+  let location = useLocation();
+
   useEffect(() => {
-    window.onpopstate = () => {
+    if (location.pathname === "/") {
       setMode(InitialMode);
-    };
-  });
-
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  useEffect(() => {
-    if (mode === InitialMode) {
       axios.request({
         method: 'get',
         url: 'https://opendatalinter.volare.site/'
@@ -43,7 +36,11 @@ function App() {
       });
       setUploadProgress(0);
     }
-  }, [mode]);
+  }, [location]);
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   useEffect(() => {
     if (file === undefined || file === null) return;
@@ -60,7 +57,8 @@ function App() {
         setUploadProgress(e.loaded / e.total * 100);
         if (e.loaded === e.total) {
           sleep(50).then(() => {
-            setMode(RenderResultMode);
+            setMode(InitialMode);
+            history.push("/result");
           });
         }
       }
@@ -73,29 +71,26 @@ function App() {
   }, [file]);
 
   return (
-    <Router>
-      <div class="App">
-        <header class="header">
-          <h1 class="headerInner">
-            Open Data Linter
-          </h1>
-        </header>
-        <main class="main">
-          <div class="mainInner">
-            <Redirect to={mode === RenderResultMode ? "/result" : "/"} />
-            <Switch>
-              <Route path="/result">
-                <ResultList results={results} file={file} />
-              </Route>
-              <Route path="/">
-                { mode === InitialMode && <FileUploader setFile={setFile} /> }
-                { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
-              </Route>
-            </Switch>
-          </div>
-        </main>
-      </div>
-    </Router>
+    <div class="App">
+      <header class="header">
+        <h1 class="headerInner">
+          Open Data Linter
+        </h1>
+      </header>
+      <main class="main">
+        <div class="mainInner">
+          <Switch>
+            <Route path="/result">
+              <ResultList results={results} file={file} />
+            </Route>
+            <Route path="/">
+              { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
+              { mode === InitialMode && <FileUploader setFile={setFile} /> }
+            </Route>
+          </Switch>
+        </div>
+      </main>
+    </div>
   );
 }
 
