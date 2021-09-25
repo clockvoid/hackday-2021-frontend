@@ -50,6 +50,30 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  const createShiftedWaitTime = () => {
+    return initialResult.map(() => {
+      return Math.floor(Math.random() * 400 + 100);
+    });
+  }
+
+  const applyResult = async (newResult) => {
+    const shiftedWaitTime = createShiftedWaitTime();
+    console.log(shiftedWaitTime);
+    let time = 0;
+    while (time < Math.max(...shiftedWaitTime)) {
+      let tmpResult = [...initialResult];
+      await sleep(10);
+      time+=10;
+      for (let i = 0; i < shiftedWaitTime.length; i++) {
+        if (time >= shiftedWaitTime[i]) {
+          tmpResult[i] = newResult[i];
+        }
+      }
+      setResults(tmpResult);
+      console.log("set result!");
+    }
+  }
+
   useEffect(() => {
     if (file === undefined || file === null) {
       return;
@@ -75,7 +99,8 @@ function App() {
       }
     }).then(data => {
       console.log("Success: ", data);
-      setResults(data.data);
+      const newResult = data.data;
+      applyResult(newResult);
     }).catch(error => {
       console.log("Error: ", error);
     });
