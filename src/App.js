@@ -3,31 +3,11 @@ import { useState } from 'react';
 import FileUploader from './FileUploader';
 import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
-import { useFilePicker } from 'use-file-picker';
 
 function App() {
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState();
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [openFileSelector] = useFilePicker({
-    accept: [
-      '.csv',
-      '.pdf',
-      '.xls',
-      '.xlxs'
-    ],
-    multiple: false,
-  });
-
-  const handleDrop = (newFiles) => {
-    // filesはuseStateから来るので，deep copyしておかないと参照が変わらず変更がフックされない
-    // この方法はnested listでは有効ではないらしい
-    let fileList = [...files];
-    for (var i = 0; i < newFiles.length; i++) {
-      fileList.push(newFiles[i]);
-    }
-    setFiles(fileList);
-  }
 
   const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -57,7 +37,8 @@ function App() {
       </header>
       <center>
         <div>
-          <FileUploader handleDrop={handleDrop} pickFile={openFileSelector} />
+          selected file: {file === undefined ? "" : file.name}
+          <FileUploader setFile={setFile} />
           <UploadProgress uploadProgress={uploadProgress} />
           <ResultList results={results} />
         </div>
