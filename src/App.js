@@ -39,7 +39,7 @@ function App() {
     }
   }, [location]);
 
-  function sleep(ms) {
+  const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
@@ -70,6 +70,8 @@ function App() {
     }).catch(error => {
       console.log("Error: ", error);
     });
+  // setInitialResultとhistoryを更新しているが，無限ループにはならないので無視
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   return (
