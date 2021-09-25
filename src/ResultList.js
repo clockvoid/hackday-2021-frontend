@@ -2,17 +2,20 @@ import { useState } from 'react';
 
 const ResultList = (props) => {
   return (
-    <div style={{height: 200, width: 300, borderStyle: "solid", borderColor: "#000000", borderWidth: 1}}>
-      <h3>形式チェック</h3>
-      {props.results.map((result) =>
-      <ResultItem result={result} />
-      )}
+    <div class="resultList">
+      <h2 class="resultListHeadline">形式チェック</h2>
+      <ul class="resultListListcontenter">
+        {props.results.map((result) =>
+          <ResultItem result={result} />
+        )}
+      </ul>
     </div>
   );
 }
 
 const ResultItem = (props) => {
   const [display, setDisplay] = useState("isOpen");
+  const [itemState, setItemState] = useState("isWaite")
 
   const toggleDisplay = () => {
     setDisplay(display === "isOpen" ? "isClose" : "isOpen");
@@ -30,16 +33,41 @@ const ResultItem = (props) => {
   }
 
   return (
-    <div>
-      <div onClick={toggleDisplay}>
-        <b>{props.result.item}</b>
-      </div>
-        <div className={display}>
-          {cells.map((cell) =>
-          <p>{cell.toString()}</p>
+    <>
+      <li class="resultListListItem">
+        <div class="resultListListHeadline">
+          <span class="material-icons-outlined resultListListIcon resultListListIconWaiting">circle</span>
+          <p class="resultListListTitle">{props.name}</p>
+        </div>
+      </li>
+      <li class="resultListListItem">
+        <div class="resultListListHeadline">
+          <span class="material-icons-outlined resultListListIcon resultListListIconChecked">check_circle</span>
+          <p class="resultListListTitle">{props.name}</p>
+        </div>
+      </li>
+      <li class="resultListListItem">
+        <div class="resultListListHeadline">
+          <span class="material-icons-outlined resultListListIcon resultListListIconBlocked">remove_circle_outline</span>
+          <p class="resultListListTitle">{props.name}</p>
+        </div>
+        <div class="resultListListContents">
+          <p class="resultListListContentsBlocked">ファイル形式が間違っているためチェックできません</p>
+        </div>
+      </li>
+      <li class="resultListListItem">
+        <div class="resultListListHeadline">
+          <span class="material-icons resultListListIcon resultListListIconError">block</span>
+          <p class="resultListListTitle">{props.name}</p>
+        </div>
+        <div class="resultListListContents">
+          <p class="resultListListContentsErrorTitle">固定文</p>
+          {props.cells.map((cell) =>
+            <span class="resultListListContentsError">{cell} ,</span>
           )}
         </div>
-    </div>
+      </li>
+    </>
   );
 }
 

@@ -32,18 +32,20 @@ function App() {
   }, [file]);
 
   return (
-    <div>
-      <header>
-        Open Data Linter
+    <div class="App">
+      <header class="header">
+        <h1 class="headerInner">
+          Open Data Linter
+        </h1>
       </header>
-      <center>
-        <div>
+      <main class="main">
+        <div class="mainInner">
           selected file: {file === undefined ? "" : file.name}
           <FileUploader setFile={setFile} />
           <UploadProgress uploadProgress={uploadProgress} />
           <ResultList results={results} />
         </div>
-      </center>
+      </main>
     </div>
   );
 }
