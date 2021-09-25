@@ -7,7 +7,9 @@ const UploadProgress = (props) => {
       <h2 class="uploadProgressHeadline">アップロード中...</h2>
       <div class="uploadProgressItem">
         <span class="material-icons-outlined uploadProgressIcon">cloud_upload</span>
-        <p class="uploadProgressText">ファイル名</p>
+        <p class="uploadProgressText">
+          {props.file !== undefined ? props.file.name : "ファイル名"}
+        </p>
         <span class="uploadProgressRate">{uploadRate > 100 ? '100%' : `${uploadRate}%`}</span>
       </div>
       <div class="uploadProgressBarWapper" value={props.uploadProgress} max="100">

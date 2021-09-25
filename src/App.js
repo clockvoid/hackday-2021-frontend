@@ -56,9 +56,8 @@ function App() {
       </header>
       <main class="main">
         <div class="mainInner">
-          selected file: {file === undefined ? "" : file.name}
           <FileUploader setFile={setFile} />
-          <UploadProgress uploadProgress={uploadProgress} />
+          <UploadProgress uploadProgress={uploadProgress} file={file} />
           <ResultList results={results} />
         </div>
       </main>
