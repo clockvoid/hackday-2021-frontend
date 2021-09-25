@@ -52,7 +52,7 @@ function App() {
 
   const createShiftedWaitTime = () => {
     return initialResult.map(() => {
-      return Math.floor(Math.random() * 400 + 100);
+      return Math.floor(Math.random() * 100 + 100);
     });
   }
 
