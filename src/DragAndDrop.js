@@ -68,13 +68,13 @@ class DragAndDrop extends Component {
   render() {
     return (
       <div
-        class="fileUploaderInner"
+        className="fileUploaderInner"
         ref={this.dropRef}
       >
         {this.state.dragging &&
-        <div class="fileUploaderDropdown">
-          <span class="material-icons fileUploaderIcon">download</span>
-          <h2 class="fileUploaderHeadline">ここにドラック＆ドロップする</h2>
+        <div className="fileUploaderDropdown">
+          <span className="material-icons fileUploaderIcon">download</span>
+          <h2 className="fileUploaderHeadline">ここにドラック＆ドロップする</h2>
         </div>
         }
         {this.props.children}

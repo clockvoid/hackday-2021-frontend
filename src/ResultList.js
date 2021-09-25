@@ -6,20 +6,20 @@ const ResultList = (props) => {
 
   return (
     <div>
-      <div class="resultList">
-        <h2 class="resultListHeadline">形式チェック</h2>
+      <div className="resultList">
+        <h2 className="resultListHeadline">形式チェック</h2>
         <b>{ props.file !== undefined && props.file.name }</b>
-        <ul class="resultListListcontenter">
+        <ul className="resultListListcontenter">
           <>
             {props.results.map((result) =>
-            <ResultItem result={result} />
+            <ResultItem key={result.no} result={result} />
             )}
           </>
         </ul>
       </div>
 
       <div style={{textAlign: "center"}}>
-        <button class="fileUploaderbutton" onClick={() => history.goBack()}>再アップロードする</button>
+        <button className="fileUploaderbutton" onClick={() => history.goBack()}>再アップロードする</button>
       </div>
     </div>
   );
@@ -27,6 +27,7 @@ const ResultList = (props) => {
 
 const ResultItem = (props) => {
 
+  const key = props.result.no;
   const item = props.result.item;
   const isValid = props.result.is_valid;
   const invalid_content_list = props.result.invalid_contents;
@@ -38,10 +39,10 @@ const ResultItem = (props) => {
   if (isValid === true) {
   // ok
     return (
-      <li class="resultListListItem">
-        <div class="resultListListHeadline">
-          <span class="material-icons resultListListIcon resultListListIconChecked">check_circle</span>
-          <p class="resultListListTitle">{item}</p>
+      <li className="resultListListItem" key={key + "1"}>
+        <div className="resultListListHeadline" key={key + "2"}>
+          <span className="material-icons resultListListIcon resultListListIconChecked" key={key + "3"}>check_circle</span>
+          <p className="resultListListTitle" key={key + "4"}>{item}</p>
         </div>
       </li>
     );
@@ -49,28 +50,28 @@ const ResultItem = (props) => {
   // だめなセルが存在
     if (cells === undefined) {
       return (
-        <li class="resultListListItem">
-          <div class="resultListListHeadline">
-            <span class="material-icons resultListListIcon resultListListIconError">block</span>
-              <p class="resultListListTitle">{item}</p>
+        <li className="resultListListItem" key={key + "5"}>
+          <div className="resultListListHeadline" key={key + "6"}>
+            <span className="material-icons resultListListIcon resultListListIconError" key={key + "7"}>block</span>
+              <p className="resultListListTitle" key={key + "8"}>{item}</p>
           </div>
         </li>
       );
     }
     if (message === undefined) {
       return (
-        <li class="resultListListItem">
-          <label class="resultListListLabel" onClick={() => {
+        <li className="resultListListItem" key={key + "9"}>
+          <label className="resultListListLabel" key={key + "10"} onClick={() => {
             setAccordion(!accordion)
           }}>
-            <span class="material-icons resultListListIcon resultListListIconError">block</span>
-            <p class="resultListListTitle">{item}</p>
-            <span class="material-icons">{accordion ? 'expand_more' : 'expand_less'}</span>
+            <span className="material-icons resultListListIcon resultListListIconError" key={key + "11"}>block</span>
+            <p className="resultListListTitle" key={key + "12"}>{item}</p>
+            <span className="material-icons" key={key + "13"}>{accordion ? 'expand_more' : 'expand_less'}</span>
           </label>
-          <div class="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
-            <div class="resultListListContentsErrors">
-              {cells.map((cell) =>
-                <span class="resultListListContentsError">{cell[0]}行{cell[1]}列,</span>
+          <div className="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })} key={key + "14"}>
+            <div className="resultListListContentsErrors" key={key + "15"}>
+              {cells.map((cell, index) =>
+                <span className="resultListListContentsError" key={key + "16" + index.toString()}>{cell[0]}行{cell[1]}列,</span>
               )}
             </div>
           </div>
@@ -78,19 +79,19 @@ const ResultItem = (props) => {
       );
     }
     return (
-      <li class="resultListListItem">
-        <label class="resultListListLabel" onClick={() => {
+      <li className="resultListListItem" key={key + "17"}>
+        <label className="resultListListLabel" key={key + "18"} onClick={() => {
             setAccordion(!accordion)
           }} >
-          <span class="material-icons resultListListIcon resultListListIconError">block</span>
-          <p class="resultListListTitle">{item}</p>
-          <span class="material-icons">{accordion ? 'expand_more' : 'expand_less'}</span>
+          <span className="material-icons resultListListIcon resultListListIconError" key={key + "19"}>block</span>
+          <p className="resultListListTitle" key={key + "20"}>{item}</p>
+          <span className="material-icons" key={key + "21"}>{accordion ? 'expand_more' : 'expand_less'}</span>
         </label>
-        <div class="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
-          <p class="resultListListContentsErrorTitle">{message}</p>
-          <div class="resultListListContentsErrors">
-            {cells.map((cell) =>
-              <span class="resultListListContentsError">{cell[0]}行 {cell[1]}列,</span>
+        <div className="resultListListContents" key={key + "22"} style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
+          <p className="resultListListContentsErrorTitle" key={key + "23"}>{message}</p>
+          <div className="resultListListContentsErrors" key={key + "24"}>
+            {cells.map((cell, index) =>
+              <span className="resultListListContentsError" key={key + "25" + index.toString()}>{cell[0]}行 {cell[1]}列,</span>
             )}
           </div>
         </div>
@@ -98,23 +99,23 @@ const ResultItem = (props) => {
     );
   } else if (isValid === null) {
     return (
-      <li class="resultListListItem">
-        <div class="resultListListHeadline">
-          <span class="material-icons-outlined resultListListIcon resultListListIconBlocked">remove_circle_outline</span>
-          <p class="resultListListTitle">{item}</p>
+      <li className="resultListListItem" key={key + "26"}>
+        <div className="resultListListHeadline" key={key + "27"}>
+          <span className="material-icons-outlined resultListListIcon resultListListIconBlocked" key={key + "28"}>remove_circle_outline</span>
+          <p className="resultListListTitle" key={key + "29"}>{item}</p>
         </div>
-        <div class="resultListListContents">
-          <p class="resultListListContentsBlocked">ファイル形式が間違っているためチェックできません</p>
+        <div className="resultListListContents" key={key + "30"}>
+          <p className="resultListListContentsBlocked" key={key + "31"}>ファイル形式が間違っているためチェックできません</p>
         </div>
       </li>
     );
   };
 
   return (
-    <li class="resultListListItem">
-      <div class="resultListListHeadline">
-        <span class="material-icons-outlined resultListListIcon resultListListIconWaiting">circle</span>
-        <p class="resultListListTitle">{item}</p>
+    <li className="resultListListItem" key={key + "32"}>
+      <div className="resultListListHeadline" key={key + "33"}>
+        <span className="material-icons-outlined resultListListIcon resultListListIconWaiting" key={key + "33"}>circle</span>
+        <p className="resultListListTitle" key={key + "34"}>{item}</p>
       </div>
     </li>
   );

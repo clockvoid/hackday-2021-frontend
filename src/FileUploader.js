@@ -1,5 +1,6 @@
 import DragAndDrop from './DragAndDrop'
 import { useFilePicker } from 'use-file-picker';
+import { useEffect } from 'react';
 
 const FileUploader = (props) => {
 
@@ -17,18 +18,22 @@ const FileUploader = (props) => {
     multiple: false,
   });
 
-  if (plainFiles.length > 0) {
-    props.setFile(plainFiles[0]);
-    clear();
-  }
+  useEffect(() => {
+    if (plainFiles.length > 0) {
+      props.setFile(plainFiles[0]);
+      clear();
+    }
+  // clearとpropsを参照しているが，無限ループにはならないので無視
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plainFiles]);
 
   return (
-    <div class="fileUploader">
+    <div className="fileUploader">
       <DragAndDrop handleDrop={handleDrop}>
-        <span class="material-icons-outlined fileUploaderIcon">cloud_upload</span>
-        <h2 class="fileUploaderHeadline">ファイルをアップロードする</h2>
-        <p class="fileUploadertext">CSV，Excel，PDFをドラッグ&ドロップして，形式をチェックします</p>
-        <button class="fileUploaderbutton" onClick={openFileSelector}>ファイルを選択</button>
+        <span className="material-icons-outlined fileUploaderIcon">cloud_upload</span>
+        <h2 className="fileUploaderHeadline">ファイルをアップロードする</h2>
+        <p className="fileUploadertext">CSV，Excel，PDFをドラッグ&ドロップして，形式をチェックします</p>
+        <button className="fileUploaderbutton" onClick={openFileSelector}>ファイルを選択</button>
       </DragAndDrop>
     </div>
   );
