@@ -26,7 +26,7 @@ const ResultItem = (props) => {
     return (
       <li class="resultListListItem">
         <div class="resultListListHeadline">
-          <span class="material-icons-outlined resultListListIcon resultListListIconChecked">check_circle</span>
+          <span class="material-icons resultListListIcon resultListListIconChecked">check_circle</span>
           <p class="resultListListTitle">{item}</p>
         </div>
       </li>

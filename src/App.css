@@ -19,6 +19,7 @@
   padding: 8px 16px;
   position: sticky;
   top: 0px;
+  z-index: 30;
 }
 
 .headerInner {
@@ -77,6 +78,11 @@
   margin-top: 24px;
   padding: 8px 16px;
   cursor: pointer;
+}
+
+.fileUploaderbutton:hover {
+  background-color: #4DA600;
+  transition: all 0.4s ease ;
 }
 
 /* DragAndDrop */
@@ -223,28 +229,92 @@
 }
 
 @keyframes checked {
-  0% {
-    transform: scale(0.5);
-  }
   50% {
-    transform: scale(1.4);
-  }
-  100% {
-    transform: scale(1);
+    transform: scale(1.2);
   }
 }
 
 .resultListListIconChecked {
-  animation: 0.5s linear checked;
+  animation: 0.4s linear checked;
   color: #55C500;
+  position: relative;
+  transform: scale(1);
+  transition: all 0.2s ease ;
+}
+
+@keyframes checkbackground {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  
+}
+
+.resultListListIconChecked::before {
+  animation: 0.3s linear checkbackground;
+  background-color: #55C500;
+  border-radius: 50%;
+  content: "";
+  height: 24px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(2);
+  width: 24px;
+  z-index: -1;
 }
 
 .resultListListIconBlocked {
   color: rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease ;
+}
+
+@keyframes error {
+  10% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  20% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  30% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  40% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  70% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  80% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  90% {
+    transform: translateX(1px) rotate(0);
+  }
+  100% {
+    transform: translateX(-1px) rotate(0);
+  }
 }
 
 .resultListListIconError {
+  animation: 0.4s linear error;
   color: #D60A34;
+  transform: perspective(1px) translateZ(0);
+  transition: all 0.2s ease ;
 }
 
 .resultListListTitle {
