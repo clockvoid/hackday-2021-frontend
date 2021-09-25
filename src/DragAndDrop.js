@@ -1,4 +1,4 @@
-import { Component, createRef } from 'react';
+import React, { Component } from 'react';
 
 /**
  * DragAndDrop Component
@@ -15,14 +15,14 @@ class DragAndDrop extends Component {
       dragging: false,
     };
 
-    this.dropRef = createRef();
+    this.dropRef = React.createRef();
   }
 
   handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
   };
-  handledragIn = (e) => {
+  handleDragIn = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.dragCounter++;
@@ -40,7 +40,7 @@ class DragAndDrop extends Component {
   handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({drag: false})
+    this.setState({dragging: false})
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       this.props.handleDrop(e.dataTransfer.files)
       e.dataTransfer.clearData()
@@ -67,7 +67,38 @@ class DragAndDrop extends Component {
 
   render() {
     return (
-      <div ref={this.dropRef}>
+      <div
+        style={{display: 'inline-block', position: 'relative'}}
+        ref={this.dropRef}
+      >
+        {this.state.dragging &&
+        <div 
+          style={{
+            border: 'dashed grey 4px',
+            backgroundColor: 'rgba(255,255,255,.8)',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0, 
+            right: 0,
+            zIndex: 9999
+          }}
+        >
+          <div 
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: 0,
+              left: 0,
+              textAlign: 'center',
+              color: 'grey',
+              fontSize: 36
+            }}
+          >
+            <div>drop here :)</div>
+          </div>
+        </div>
+        }
         {this.props.children}
       </div>
     );
