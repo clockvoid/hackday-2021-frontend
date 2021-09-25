@@ -9,7 +9,7 @@ function App() {
 
   const [files, setFiles] = useState([]);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [openFileSelector, { filesContent, loading }] = useFilePicker({
+  const [openFileSelector] = useFilePicker({
     accept: [
       '.csv',
       '.pdf',
