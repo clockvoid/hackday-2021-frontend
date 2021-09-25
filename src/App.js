@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import DragAndDrop from './DragAndDrop'
+import FileUploader from './FileUploader';
 
 function App() {
 
@@ -18,41 +17,13 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Hello value="False" />
-        <DragAndDrop handleDrop={handleDrop}>
-          <div style={{height: 300, width: 250}}>
-            {files.map((file, i) =>
-            <div key={i}>{file.name}</div>
-            )}
-          </div>
-        </DragAndDrop>
-      </header>
-    </div>
-  );
-}
-
-const Hello = (props) => {
-  const [test, setTest] = useState(props.value);
-  return (
     <div>
-      <p>{test}</p>
-      <button onClick={() => {
-        setTest(test === "False" ? "True" : "False");
-      }}>press me</button>
+      <header>
+        Open Data Linter
+      </header>
+      <center>
+        <FileUploader handleDrop={handleDrop} />
+      </center>
     </div>
   );
 }
