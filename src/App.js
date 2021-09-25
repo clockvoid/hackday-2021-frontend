@@ -33,7 +33,6 @@ function App() {
         url: 'https://opendatalinter.volare.site/'
       }).then(data => {
         setInitialResult(data.data);
-        console.log("Initial :", data.data);
       });
       setUploadProgress(0);
     }
@@ -74,24 +73,22 @@ function App() {
         }
       }
     }).then(data => {
-      console.log("Success: ", data);
       setResults(data.data);
     }).catch(error => {
-      console.log("Error: ", error);
     });
   // setInitialResultとhistoryを更新しているが，無限ループにはならないので無視
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file]);
 
   return (
-    <div class="App">
-      <header class="header">
-        <h1 class="headerInner">
+    <div className="App">
+      <header className="header">
+        <h1 className="headerInner">
           Open Data Linter
         </h1>
       </header>
-      <main class="main">
-        <div class="mainInner">
+      <main className="main">
+        <div className="mainInner">
           <Switch>
             <Route path="/result">
               <ResultList results={results} file={file} />
