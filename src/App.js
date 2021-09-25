@@ -37,6 +37,13 @@ function App() {
       });
       setUploadProgress(0);
     }
+    if (location.pathname === "/result") {
+      if (file === undefined || file === null) {
+        history.replace("/");
+      }
+    }
+  // fileを参照してhistoryを更新しているが，無限ループにはならないので無視
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   const sleep = (ms) => {
@@ -44,7 +51,9 @@ function App() {
   }
 
   useEffect(() => {
-    if (file === undefined || file === null) return;
+    if (file === undefined || file === null) {
+      return;
+    }
 
     setMode(UploadMode);
     setResults(initialResult);
