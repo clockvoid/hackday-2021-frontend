@@ -1,34 +1,51 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FileUploader from './FileUploader';
 import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
+import axios from 'axios';
+
+const UploadMode = 1;
+const ViewInvalidMode = 2; // eslint-disable-line
 
 function App() {
 
-  const [file, setFile] = useState();
+  const [file, setFile] = useState(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [results, setResults] = useState([]);
+  const [mode, setMode] = useState(UploadMode); // eslint-disable-line
 
-  const sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function doProgress() {
-    await sleep(1000);
-
-    for (let i = 0; i < 100; i++) {
-      sleep(100).then(() => {
-        setUploadProgress(uploadProgress + 5);
+  useEffect(() => {
+    if (mode === UploadMode) {
+      axios.request({
+        method: 'get',
+        url: 'https://csvlinter.volare.site/'
+      }).then(data => {
+        setResults(data.data);
+        console.log(data.data);
       });
     }
-  }
+  }, [mode]);
 
-  doProgress();
+  useEffect(() => {
+    if (file === undefined || file == null) return;
 
-  const results = [
-    {name: "てすと", invalid_cells: ["1-1", "1-2"]},
-    {name: "てすと2", invalid_cells: ["2-1", "2-2"]},
-  ];
+    const submitData = new FormData();
+    submitData.append("file", file);
+    axios.request({
+      method: 'post',
+      url: 'https://csvlinter.volare.site/',
+      data: submitData,
+      onUploadProgress: (e) => {
+        setUploadProgress(Math.floor(e.loaded / e.total * 100));
+      }
+    }).then(data => {
+      console.log("Success: ", data);
+      setResults(data.data);
+    }).catch(error => {
+      console.log("Error: ", error);
+    });
+  }, [file]);
 
   return (
     <div class="App">
@@ -39,9 +56,8 @@ function App() {
       </header>
       <main class="main">
         <div class="mainInner">
-          selected file: {file === undefined ? "" : file.name}
           <FileUploader setFile={setFile} />
-          <UploadProgress uploadProgress={uploadProgress} />
+          <UploadProgress uploadProgress={uploadProgress} file={file} />
           <ResultList results={results} />
         </div>
       </main>
