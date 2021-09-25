@@ -1,7 +1,7 @@
 import 'react-dom';
 
 const UploadProgress = (props) => {
-  const uploadRate = props.uploadProgress / 100 * 100
+  const uploadRate = Math.floor(props.uploadProgress / 100 * 100);
   return (
     <div class="uploadProgress">
       <h2 class="uploadProgressHeadline">アップロード中...</h2>
