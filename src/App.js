@@ -58,13 +58,15 @@ function App() {
       data: submitData,
       onUploadProgress: (e) => {
         setUploadProgress(e.loaded / e.total * 100);
+        if (e.loaded === e.total) {
+          sleep(50).then(() => {
+            setMode(RenderResultMode);
+          });
+        }
       }
     }).then(data => {
       console.log("Success: ", data);
-      setMode(RenderResultMode);
-      sleep(2000).then(() => {
-        setResults(data.data);
-      });
+      setResults(data.data);
     }).catch(error => {
       console.log("Error: ", error);
     });
