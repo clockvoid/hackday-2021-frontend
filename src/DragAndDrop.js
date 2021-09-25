@@ -68,7 +68,7 @@ class DragAndDrop extends Component {
   render() {
     return (
       <div
-        style={{display: 'inline-block', position: 'relative'}}
+        class="fileUploaderInner"
         ref={this.dropRef}
       >
         {this.state.dragging &&
