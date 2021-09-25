@@ -101,7 +101,7 @@ class DragAndDrop extends Component {
         }
         {this.props.children}
       </div>
-);
+    );
   }
 }
 
