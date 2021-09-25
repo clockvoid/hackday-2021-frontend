@@ -50,27 +50,25 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  const createShiftedWaitTime = () => {
-    return initialResult.map(() => {
-      return Math.floor(Math.random() * 100 + 100);
-    });
-  }
+  const applyResult = async (newResult, loadTime) => {
+    let minTime = 100;
+    if (loadTime > 100) minTime = 0;
 
-  const applyResult = async (newResult) => {
-    const shiftedWaitTime = createShiftedWaitTime();
-    console.log(shiftedWaitTime);
+    const shiftedWaitTime = initialResult.map(() => {
+      return Math.floor(Math.random() * 100 + minTime);
+    });
+
     let time = 0;
     while (time < Math.max(...shiftedWaitTime)) {
       let tmpResult = [...initialResult];
       await sleep(10);
-      time+=10;
+      time += 10;
       for (let i = 0; i < shiftedWaitTime.length; i++) {
         if (time >= shiftedWaitTime[i]) {
           tmpResult[i] = newResult[i];
         }
       }
       setResults(tmpResult);
-      console.log("set result!");
     }
   }
 
@@ -84,6 +82,7 @@ function App() {
 
     const submitData = new FormData();
     submitData.append("file", file);
+    let uploadDone;
     axios.request({
       method: 'post',
       url: 'https://opendatalinter.volare.site/',
@@ -92,6 +91,7 @@ function App() {
         setUploadProgress(e.loaded / e.total * 100);
         if (e.loaded === e.total) {
           sleep(50).then(() => {
+            uploadDone = Date.now();
             setMode(InitialMode);
             history.push("/result");
           });
@@ -100,7 +100,8 @@ function App() {
     }).then(data => {
       console.log("Success: ", data);
       const newResult = data.data;
-      applyResult(newResult);
+      const responseDone = Date.now();
+      applyResult(newResult, responseDone - uploadDone);
     }).catch(error => {
       console.log("Error: ", error);
     });
