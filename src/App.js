@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import FileUploader from './FileUploader';
 import UploadProgress from './UploadProgress';
+import ResultList from './ResultList.js';
 import { useFilePicker } from 'use-file-picker';
 
 function App() {
@@ -44,6 +45,11 @@ function App() {
 
   doProgress();
 
+  const results = [
+    {name: "てすと", invalid_cells: ["1-1", "1-2"]},
+    {name: "てすと2", invalid_cells: ["2-1", "2-2"]},
+  ];
+
   return (
     <div>
       <header>
@@ -53,6 +59,7 @@ function App() {
         <div>
           <FileUploader handleDrop={handleDrop} pickFile={openFileSelector} />
           <UploadProgress uploadProgress={uploadProgress} />
+          <ResultList results={results} />
         </div>
       </center>
     </div>
