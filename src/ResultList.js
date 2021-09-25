@@ -1,14 +1,21 @@
 const ResultList = (props) => {
   return (
-    <div class="resultList">
-      <h2 class="resultListHeadline">形式チェック</h2>
-      <ul class="resultListListcontenter">
-        <>
-          {props.results.map((result) =>
-          <ResultItem result={result} />
-          )}
-        </>
-      </ul>
+    <div>
+      <div class="resultList">
+        <h2 class="resultListHeadline">形式チェック</h2>
+        <b>{ props.file !== undefined && props.file.name }</b>
+        <ul class="resultListListcontenter">
+          <>
+            {props.results.map((result) =>
+            <ResultItem result={result} />
+            )}
+          </>
+        </ul>
+      </div>
+
+      <div style={{textAlign: "center"}}>
+        <button class="fileUploaderbutton">再アップロードする</button>
+      </div>
     </div>
   );
 }
@@ -17,7 +24,8 @@ const ResultItem = (props) => {
 
   const item = props.result.item;
   const isValid = props.result.is_valid;
-  const invalid_contents = props.result.invalid_contents[0];
+  const invalid_content_list = props.result.invalid_contents;
+  const invalid_contents = invalid_content_list !== undefined ? invalid_content_list[0] : undefined;
   const message = invalid_contents !== undefined ? invalid_contents.error_message : undefined;
   const cells = invalid_contents !== undefined ? invalid_contents.invalid_cells : undefined;
 
