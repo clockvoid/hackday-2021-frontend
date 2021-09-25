@@ -1,10 +1,20 @@
 import './App.css';
 import { useState } from 'react';
 import FileUploader from './FileUploader';
+import { useFilePicker } from 'use-file-picker';
 
 function App() {
 
   const [files, setFiles] = useState([]);
+  const [openFileSelector, { filesContent, loading }] = useFilePicker({
+    accept: [
+      '.csv',
+      '.pdf',
+      '.xls',
+      '.xlxs'
+    ],
+    multiple: false,
+  });
 
   const handleDrop = (newFiles) => {
     // filesはuseStateから来るので，deep copyしておかないと参照が変わらず変更がフックされない
@@ -22,7 +32,7 @@ function App() {
         Open Data Linter
       </header>
       <center>
-        <FileUploader handleDrop={handleDrop} />
+        <FileUploader handleDrop={handleDrop} pickFile={openFileSelector} />
       </center>
     </div>
   );

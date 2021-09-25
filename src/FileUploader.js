@@ -6,7 +6,7 @@ const FileUploader = (props) => {
       <DragAndDrop handleDrop={props.handleDrop}>
         <h2>ファイルをアップロードする</h2>
         <p>CSV，Excel，PDFをドラッグ&ドロップして，形式をチェックします</p>
-        <button>ファイルを選択</button>
+        <button onClick={() => props.pickFile()}>ファイルを選択</button>
       </DragAndDrop>
     </div>
   );
