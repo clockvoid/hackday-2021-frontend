@@ -1,11 +1,18 @@
 import 'react-dom';
 
 const UploadProgress = (props) => {
+  const uploadRate = props.uploadProgress / 100 * 100
   return (
-    <div style={{height: 200, width: 300, borderStyle: "solid", borderColor: "#000000", borderWidth: 1}}>
-      <h3>アップロード中...</h3>
-      <label for="progress">ファイル名</label>
-      <progress id="progress" value={props.uploadProgress} max="100"></progress>
+    <div class="uploadProgress">
+      <h2 class="uploadProgressHeadline">アップロード中...</h2>
+      <div class="uploadProgressItem">
+        <span class="material-icons-outlined uploadProgressIcon">cloud_upload</span>
+        <p class="uploadProgressText">ファイル名</p>
+        <span class="uploadProgressRate">{uploadRate > 100 ? '100%' : `${uploadRate}` + "%"}</span>
+      </div>
+      <div class="uploadProgressBarWapper" value={props.uploadProgress} max="100">
+        <div class="uploadProgressBar" style={({ width: `${uploadRate}%`})} />
+      </div>
     </div>
   );
 }
