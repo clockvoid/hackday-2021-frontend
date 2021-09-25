@@ -72,31 +72,9 @@ class DragAndDrop extends Component {
         ref={this.dropRef}
       >
         {this.state.dragging &&
-        <div 
-          style={{
-            border: 'dashed grey 4px',
-            backgroundColor: 'rgba(255,255,255,.8)',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0, 
-            right: 0,
-            zIndex: 9999
-          }}
-        >
-          <div 
-            style={{
-              position: 'absolute',
-              top: '50%',
-              right: 0,
-              left: 0,
-              textAlign: 'center',
-              color: 'grey',
-              fontSize: 36
-            }}
-          >
-            <div>drop here :)</div>
-          </div>
+        <div class="fileUploaderDropdown">
+          <span class="material-icons fileUploaderIcon">download</span>
+          <h2 class="fileUploaderHeadline">ここにドラック＆ドロップする</h2>
         </div>
         }
         {this.props.children}

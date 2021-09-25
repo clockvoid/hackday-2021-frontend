@@ -25,7 +25,7 @@ const FileUploader = (props) => {
   return (
     <div class="fileUploader">
       <DragAndDrop handleDrop={handleDrop}>
-        <span class="material-icons fileUploaderIcon">cloud_upload</span>
+        <span class="material-icons-outlined fileUploaderIcon">cloud_upload</span>
         <h2 class="fileUploaderHeadline">ファイルをアップロードする</h2>
         <p class="fileUploadertext">CSV，Excel，PDFをドラッグ&ドロップして，形式をチェックします</p>
         <button class="fileUploaderbutton" onClick={openFileSelector}>ファイルを選択</button>
