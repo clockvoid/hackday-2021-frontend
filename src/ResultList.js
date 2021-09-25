@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const ResultList = (props) => {
   return (
     <div class="resultList">
@@ -20,6 +22,7 @@ const ResultItem = (props) => {
   const invalid_contents = props.result.invalid_contents[0];
   const message = invalid_contents !== undefined ? invalid_contents.error_message : undefined;
   const cells = invalid_contents !== undefined ? invalid_contents.invalid_cells : undefined;
+  const [accordion, setAccordion] = useState(true)
 
   if (isValid === true) {
   // ok
@@ -46,29 +49,39 @@ const ResultItem = (props) => {
     if (message === undefined) {
       return (
         <li class="resultListListItem">
-          <div class="resultListListHeadline">
+          <label class="resultListListLabel" onClick={() => {
+            setAccordion(!accordion)
+          }}>
             <span class="material-icons resultListListIcon resultListListIconError">block</span>
             <p class="resultListListTitle">{item}</p>
-          </div>
-          <div class="resultListListContents">
-            {cells.map((cell) =>
-            <span class="resultListListContentsError">{cell[0]}行{cell[1]}列 ,</span>
-            )}
+            <span class="material-icons">{accordion ? 'expand_more' : 'expand_less'}</span>
+          </label>
+          <div class="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
+            <div class="resultListListContentsErrors">
+              {cells.map((cell) =>
+                <span class="resultListListContentsError">{cell[0]}行{cell[1]}列,</span>
+              )}
+            </div>
           </div>
         </li>
       );
     }
     return (
       <li class="resultListListItem">
-        <div class="resultListListHeadline">
+        <label class="resultListListLabel" onClick={() => {
+            setAccordion(!accordion)
+          }} >
           <span class="material-icons resultListListIcon resultListListIconError">block</span>
           <p class="resultListListTitle">{item}</p>
-        </div>
-        <div class="resultListListContents">
+          <span class="material-icons">{accordion ? 'expand_more' : 'expand_less'}</span>
+        </label>
+        <div class="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
           <p class="resultListListContentsErrorTitle">{message}</p>
-          {cells.map((cell) =>
-            <span class="resultListListContentsError">{cell[0]}行{cell[1]}列 ,</span>
-          )}
+          <div class="resultListListContentsErrors">
+            {cells.map((cell) =>
+              <span class="resultListListContentsError">{cell[0]}行 {cell[1]}列,</span>
+            )}
+          </div>
         </div>
       </li>
     );
