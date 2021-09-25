@@ -19,6 +19,7 @@ function App() {
   const [file, setFile] = useState(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [results, setResults] = useState([]);
+  const [initialResult, setInitialResult] = useState([]);
   const [mode, setMode] = useState(InitialMode);
 
   let history = useHistory();
@@ -31,8 +32,8 @@ function App() {
         method: 'get',
         url: 'https://opendatalinter.volare.site/'
       }).then(data => {
-        setResults(data.data);
-        console.log(data.data);
+        setInitialResult(data.data);
+        console.log("Initial :", data.data);
       });
       setUploadProgress(0);
     }
@@ -46,6 +47,7 @@ function App() {
     if (file === undefined || file === null) return;
 
     setMode(UploadMode);
+    setResults(initialResult);
 
     const submitData = new FormData();
     submitData.append("file", file);
