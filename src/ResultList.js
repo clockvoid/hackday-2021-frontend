@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const ResultList = (props) => {
+  let history = useHistory();
+
   return (
     <div>
       <div class="resultList">
@@ -16,7 +19,7 @@ const ResultList = (props) => {
       </div>
 
       <div style={{textAlign: "center"}}>
-        <button class="fileUploaderbutton">再アップロードする</button>
+        <button class="fileUploaderbutton" onClick={() => history.goBack()}>再アップロードする</button>
       </div>
     </div>
   );
