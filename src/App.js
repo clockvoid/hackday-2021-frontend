@@ -9,11 +9,7 @@ function App() {
 
   const [file, setFile] = useState(undefined);
   const [uploadProgress, setUploadProgress] = useState(0);
-
-  const results = [
-    {name: "てすと", invalid_cells: ["1-1", "1-2"]},
-    {name: "てすと2", invalid_cells: ["2-1", "2-2"]},
-  ];
+  const [results, setResults] = useState([]);
 
   useEffect(() => {
     if (file === undefined || file == null) return;
@@ -29,6 +25,7 @@ function App() {
       }
     }).then(data => {
       console.log("Success: ", data);
+      setResults(data.data);
     }).catch(error => {
       console.log("Error: ", error);
     });

@@ -5,7 +5,7 @@ const ResultList = (props) => {
     <div style={{height: 200, width: 300, borderStyle: "solid", borderColor: "#000000", borderWidth: 1}}>
       <h3>形式チェック</h3>
       {props.results.map((result) =>
-      <ResultItem name={result.name} cells={result.invalid_cells} />
+      <ResultItem result={result} />
       )}
     </div>
   );
@@ -18,16 +18,27 @@ const ResultItem = (props) => {
     setDisplay(display === "isOpen" ? "isClose" : "isOpen");
   }
 
+  const invalid_contents = props.result.invalid_contents[0];
+  const cells = invalid_contents !== undefined ? invalid_contents.invalid_cells : undefined;
+
+  if (cells === undefined) {
+    return (
+      <div>
+          <b>{props.result.item}</b>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div onClick={toggleDisplay}>
-        <b>{props.name}</b>
+        <b>{props.result.item}</b>
       </div>
-      <div className={display}>
-        {props.cells.map((cell) =>
-        <p>{cell}</p>
-        )}
-      </div>
+        <div className={display}>
+          {cells.map((cell) =>
+          <p>{cell.toString()}</p>
+          )}
+        </div>
     </div>
   );
 }
