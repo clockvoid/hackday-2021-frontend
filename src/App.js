@@ -100,6 +100,13 @@ function App() {
           </Switch>
         </div>
       </main>
+      <footer className="footer">
+        <p className="footerText">
+          総務省から提供されている
+          <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
+          を基に形式をチェックしています
+        </p>
+      </footer>
     </div>
   );
 }

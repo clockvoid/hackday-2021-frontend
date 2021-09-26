@@ -43,6 +43,28 @@
   width: 100%;
 }
 
+.footer {
+  align-items: center;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  padding: 8px 16px;
+}
+
+.footerText {
+  margin: 0;
+  text-align: center;
+}
+
+.footerLink {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.footerLink:visited {
+  color: rgba(0, 0, 0, 0.6);
+}
+
 /*FileUploader */
 
 .fileUploader {
