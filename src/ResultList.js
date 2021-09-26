@@ -90,7 +90,7 @@ const ResultItem = (props) => {
         <div className="resultListListContents" key={key + "22"} style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
           <p className="resultListListContentsErrorTitle" key={key + "23"}>{message}</p>
           <div className="resultListListContentsErrors" key={key + "24"}>
-            {cells.map((cell, index) =>
+            {cells.slice(0, 30).map((cell, index) =>
               <span className="resultListListContentsError" key={key + "25" + index.toString()}>{cell[0]}行 {cell[1]}列,</span>
             )}
           </div>

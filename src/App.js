@@ -53,8 +53,8 @@ function App() {
     let minTime = 200;
     if (loadTime > minTime) minTime = 0;
 
-    const shiftedWaitTime = initialResult.map(() => {
-      return Math.floor(Math.random() * 100 + minTime);
+    const shiftedWaitTime = initialResult.map((time, index) => {
+      return index * 100;
     });
 
     let time = 0;
