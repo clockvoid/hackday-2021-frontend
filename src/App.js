@@ -50,8 +50,8 @@ function App() {
   }
 
   const applyResult = async (newResult, loadTime) => {
-    let minTime = 100;
-    if (loadTime > 100) minTime = 0;
+    let minTime = 200;
+    if (loadTime > minTime) minTime = 0;
 
     const shiftedWaitTime = initialResult.map(() => {
       return Math.floor(Math.random() * 100 + minTime);
@@ -60,8 +60,8 @@ function App() {
     let time = 0;
     while (time < Math.max(...shiftedWaitTime)) {
       let tmpResult = [...initialResult];
-      await sleep(10);
-      time += 10;
+      await sleep(5);
+      time += 5;
       for (let i = 0; i < shiftedWaitTime.length; i++) {
         if (time >= shiftedWaitTime[i]) {
           tmpResult[i] = newResult[i];
