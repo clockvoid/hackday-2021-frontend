@@ -8,7 +8,7 @@ const ResultList = (props) => {
     <div>
       <div className="resultList">
         <h2 className="resultListHeadline">形式チェック</h2>
-        <b>{ props.file !== undefined && props.file.name }</b>
+        <p className="resultListDescription">{ props.file !== undefined && props.file.name }</p>
         <ul className="resultListListcontenter">
           <>
             {props.results.map((result) =>
@@ -53,7 +53,7 @@ const ResultItem = (props) => {
         <li className="resultListListItem" key={key + "5"}>
           <div className="resultListListHeadline" key={key + "6"}>
             <span className="material-icons resultListListIcon resultListListIconError" key={key + "7"}>block</span>
-              <p className="resultListListTitle" key={key + "8"}>{item}</p>
+            <p className="resultListListTitle" key={key + "8"}>{item}</p>
           </div>
         </li>
       );
@@ -61,13 +61,13 @@ const ResultItem = (props) => {
     if (message === undefined) {
       return (
         <li className="resultListListItem" key={key + "9"}>
-          <label className="resultListListLabel" key={key + "10"} onClick={() => {
+          <button className="resultListListLabel" key={key + "10"} onClick={() => {
             setAccordion(!accordion)
           }}>
             <span className="material-icons resultListListIcon resultListListIconError" key={key + "11"}>block</span>
             <p className="resultListListTitle" key={key + "12"}>{item}</p>
             <span className="material-icons" key={key + "13"}>{accordion ? 'expand_more' : 'expand_less'}</span>
-          </label>
+          </button>
           <div className="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })} key={key + "14"}>
             <div className="resultListListContentsErrors" key={key + "15"}>
               {cells.map((cell, index) =>
@@ -80,13 +80,13 @@ const ResultItem = (props) => {
     }
     return (
       <li className="resultListListItem" key={key + "17"}>
-        <label className="resultListListLabel" key={key + "18"} onClick={() => {
+        <button className="resultListListLabel" key={key + "18"} onClick={() => {
             setAccordion(!accordion)
           }} >
           <span className="material-icons resultListListIcon resultListListIconError" key={key + "19"}>block</span>
           <p className="resultListListTitle" key={key + "20"}>{item}</p>
           <span className="material-icons" key={key + "21"}>{accordion ? 'expand_more' : 'expand_less'}</span>
-        </label>
+        </button>
         <div className="resultListListContents" key={key + "22"} style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
           <p className="resultListListContentsErrorTitle" key={key + "23"}>{message}</p>
           <div className="resultListListContentsErrors" key={key + "24"}>
