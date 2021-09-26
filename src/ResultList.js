@@ -68,7 +68,7 @@ const ResultItem = (props) => {
             <p className="resultListListTitle" key={key + "12"}>{item}</p>
             <span className="material-icons" key={key + "13"}>{accordion ? 'expand_more' : 'expand_less'}</span>
           </button>
-          <div className="resultListListContents" style={accordion ? ({Display: "block" }) : ({ display: "none" })} key={key + "14"}>
+          <div className="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })} key={key + "14"}>
             <div className="resultListListContentsErrors" key={key + "15"}>
               {cells.map((cell, index) =>
                 <span className="resultListListContentsError" key={key + "16" + index.toString()}>{cell[0]}行{cell[1]}列,</span>
