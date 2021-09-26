@@ -190,6 +190,10 @@
   margin: 0;
 }
 
+.resultListDescription {
+  margin: 0;
+}
+
 .resultListListcontenter {
   list-style: none;
   padding: 0;
@@ -208,7 +212,10 @@
 
 .resultListListLabel {
   align-items: center;
+  background: none;
+  border: none  ;
   display: flex;
+  padding: 0;
 }
 
 .resultListListLabel:hover {
@@ -329,7 +336,10 @@
 
 .resultListListTitle {
   margin: 0;
+  font-size: 16px;
   font-weight: 600;
+  line-height: 1.8;
+  text-align: left;
 }
 
 .resultListListContents {
