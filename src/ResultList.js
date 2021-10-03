@@ -5,7 +5,7 @@ const ResultList = (props) => {
   let history = useHistory();
 
   return (
-    <div>
+    <div className="resultListWrapper">
       <div className="resultList">
         <h2 className="resultListHeadline">形式チェック</h2>
         <p className="resultListDescription">{ props.file !== undefined && props.file.name }</p>
