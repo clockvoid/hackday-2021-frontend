@@ -10,6 +10,10 @@ import {
   useHistory,
   useLocation
 } from "react-router-dom";
+import gradient1 from './image/gradient-1.png'
+import gradient2 from './image/gradient-2.png'
+import gradient3 from './image/gradient-3.png'
+import gradient4 from './image/gradient-4.png'
 
 const InitialMode = 0;
 const UploadMode = 1;
@@ -98,6 +102,12 @@ function App() {
               { mode === InitialMode && <FileUploader setFile={setFile} /> }
             </Route>
           </Switch>
+        </div>
+        <div className="mainImageContainer">
+          <img src={gradient4} alt="" className="mainImageGradient4"/>
+          <img src={gradient3} alt="" className="mainImageGradient3"/>
+          <img src={gradient2} alt="" className="mainImageGradient2"/>
+          <img src={gradient1} alt="" className="mainImageGradient1"/>
         </div>
       </main>
       <footer className="footer">
