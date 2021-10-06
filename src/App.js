@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import FileUploader from './FileUploader';
 import UploadProgress from './UploadProgress';
 import ResultList from './ResultList.js';
+import Devinfo from './devinfo';
+import Header from './header';
 import axios from 'axios';
 import {
   Switch,
   Route,
   useHistory,
-  useLocation
+  useLocation,
 } from "react-router-dom";
 import gradient1 from './image/gradient-1.png'
 import gradient2 from './image/gradient-2.png'
@@ -85,39 +87,60 @@ function App() {
   }, [file]);
 
   return (
-    <div className="App">
-      <header className="header">
-        <h1 className="headerInner">
-          Open Data Linter
-        </h1>
-      </header>
-      <main className="main">
-        <div className="mainInner">
-          <Switch>
-            <Route path="/result">
-              <ResultList results={results} file={file} />
-            </Route>
-            <Route path="/">
-              { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
-              { mode === InitialMode && <FileUploader setFile={setFile} /> }
-            </Route>
-          </Switch>
-        </div>
-        <div className="mainImageContainer">
-          <img src={gradient4} alt="" className="mainImageGradient4"/>
-          <img src={gradient3} alt="" className="mainImageGradient3"/>
-          <img src={gradient2} alt="" className="mainImageGradient2"/>
-          <img src={gradient1} alt="" className="mainImageGradient1"/>
-        </div>
-      </main>
-      <footer className="footer">
-        <p className="footerText">
-          総務省から提供されている
-          <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
-          を基に形式をチェックしています
-        </p>
-      </footer>
-    </div>
+    <>
+      <Switch>
+        <Route path="/devinfo">
+          <div className="AppDevinfo">
+            <Header />
+            <main className="devinfoMain">
+              <Devinfo />
+              <div className="devinfoImageContainer">
+                <img src={gradient4} alt="" className="mainImageGradient4"/>
+                <img src={gradient3} alt="" className="mainImageGradient3"/>
+                <img src={gradient2} alt="" className="mainImageGradient2"/>
+                <img src={gradient1} alt="" className="mainImageGradient1"/>
+              </div>
+            </main>
+            <footer className="footer">
+              <p className="footerText">
+                総務省から提供されている
+                <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
+                を基に形式をチェックしています
+              </p>
+            </footer>
+          </div>
+        </Route>
+        <Switch>
+            <div className="App">
+              <Header />
+              <main className="main">
+                <div className="mainInner">
+                  <Route path="/result">
+                    <ResultList results={results} file={file} />
+                  </Route>
+                  <Route exact path="/">
+                    { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
+                    { mode === InitialMode && <FileUploader setFile={setFile} /> }
+                  </Route>
+                </div>
+                <div className="mainImageContainer">
+                  <img src={gradient4} alt="" className="mainImageGradient4"/>
+                  <img src={gradient3} alt="" className="mainImageGradient3"/>
+                  <img src={gradient2} alt="" className="mainImageGradient2"/>
+                  <img src={gradient1} alt="" className="mainImageGradient1"/>
+                </div>
+              </main>
+              <footer className="footer">
+                <p className="footerText">
+                  総務省から提供されている
+                  <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
+                  を基に形式をチェックしています
+                </p>
+              </footer>
+            </div>
+        </Switch>
+      </Switch>
+    </>
   );
 }
 

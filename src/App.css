@@ -13,20 +13,6 @@
   padding: 24px;
 }
 
-.header {
-  width: 100%;
-  z-index: 30;
-}
-
-.headerInner {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0;
-  text-align: center;
-  width: 100%;
-}
-
 .main {
   align-items: center;
   display: flex;
@@ -56,7 +42,7 @@
 
 .mainImageContainer {
   animation: linear imageContainer 10s infinite;
-  filter: blur(50px);
+  filter: blur(15px);
   height: 100%;
   min-height: 400px;
   min-width: 400px;
@@ -175,6 +161,7 @@
 }
 
 .footer {
+  position: relative;
   z-index: 30;
 }
 
@@ -193,11 +180,115 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
+/* Header */
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 30;
+}
+
+.headerInner {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 756px;
+  width: 100%;
+}
+
+.headerLogoWrapper {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.headerLogo {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+}
+
+.headerLinkWapper { 
+  display: block;
+}
+
+.headerLink {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.headerLinkWapperMobile {
+  display: none;
+  position: relative;
+}
+
+.headerLinkbuttonMobile {
+  border: none;
+  background: none;
+  display: flex;
+  padding: 8px;
+}
+
+.headerLinkbuttonMobile:hover {
+   cursor: pointer;
+}
+
+.headerDropDownWapper {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(50px);
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  position: absolute;
+  right: 0;
+  top: 32px;
+  white-space: nowrap;
+  z-index: 30;
+}
+
+.headerLinkDropDown {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.headerLinkDropDown:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 770px) {
+  .headerLinkWapper { 
+    display: none;
+  }
+  .headerLinkWapperMobile {
+    display: block;
+  }
+}
+
+.headerLink:hover {
+  opacity: 0.5;
+}
+
+.headerLink + .headerLink {
+  margin-left: 16px;
+}
+
 /*FileUploader */
 
 .fileUploader {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(50px);
   border: 1px solid #FFFFFF;
   border-radius: 16px;
   padding: 16px;
@@ -221,7 +312,7 @@
 }
 
 .fileUploaderbutton {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   border: 1px solid #FFFFFF;
   border-radius: calc(37px / 2);
   color: rgba(0, 0, 0, 0.87);
@@ -270,8 +361,8 @@
 /* UploadProgress */
 .uploadProgress {
   align-items: center;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur( 50px);
   border: 1px solid #FFFFFF;
   border-radius: 16px;
   display: flex;
@@ -334,9 +425,8 @@
 
 .resultList {
   align-items: center;
-  backdrop-filter: blur(20px);
-  background: #FFFFFF;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur( 50px);
   border: 1px solid #FFFFFF;
   border-radius: 16px;
   display: flex;
@@ -534,4 +624,202 @@
   color: #D60A34;
   font-size: 14px;
   margin: 0 8px 0 0;
+}
+
+/* Devinfo */
+.AppDevinfo {
+  background-color: #F3F2ED;
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 16px;
+  line-height: 1.8;
+  min-height: calc(100vh - 48px);
+  padding: 24px;
+}
+
+.devinfoMain {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+}
+
+.devinfo {
+  align-items: flex-start;
+  max-width: 1032px;
+  width: 100%;
+  display: flex;
+}
+
+.devinfoContents {
+  width: calc(100% - 220px);
+  z-index: 10;
+}
+
+.devinfoSidebar {
+  flex-shrink: 0;
+  margin-left: 40px;
+  position: sticky;
+  top: 124px;
+  width: 180px;
+  z-index: 10;
+}
+
+.devinfoSidebarLink {
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.devinfoSidebarLink:hover {
+  opacity: 0.5;
+}
+
+@keyframes devinfoImageContainer {
+  0% {
+    transform: translate(-50%, -50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}
+
+.devinfoImageContainer {
+  animation: linear devinfoImageContainer 10s infinite;
+  filter: blur(15px);
+  height: 100%;
+  left: 50%;
+  opacity: 0.7;
+  position: fixed;
+  top: 50%;
+  transform-style: preserve-3d;
+  transform:  translate(-50%, -50%);
+  width: 100%;
+}
+
+.devinfoH2 {
+  margin: 0;
+  line-height: 1.4;
+  font-size: 24px;
+}
+
+.devinfoH3 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin: -102px 0 0;
+  padding-top: 124px;
+  line-height: 1.4;
+  font-size: 20px;
+}
+
+.devinfoH4 {
+  margin: 24px 0 0;
+  line-height: 1.4;
+  font-size: 16px;
+}
+
+.devinfoP24 {
+  margin: 24px 0 0;
+  font-size: 14px;
+}
+
+.devinfoP16 {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.devinfoCode {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur( 50px);
+  border: 1px solid #FFFFFF;
+  padding: 1px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.devinfoTable {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur( 50px);
+  border: 1px solid #FFFFFF;
+  margin-top: 16px;
+  overflow: auto;
+  text-align: left;
+  word-break: keep-all;
+}
+
+.devinfoTh {
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.devinfoTd {
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.devinfoPre {
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur( 50px);
+  border: 1px solid #FFFFFF;
+  padding: 16px;
+  line-height: 1.5;
+  font-size: 14px;
+  overflow: auto;
+}
+
+.devinfoBold {
+  font-weight: 600;
+}
+
+.mt8 {
+  margin-top: 8px;
+}
+
+.isBlock {
+  display: block;
+}
+
+.devinfoPrecodeWrapper {
+  display: inline-block;
+}
+
+.devinfoPrecode {
+  display: block;
+}
+
+.indent2 {
+  margin-left: 20px;
+}
+
+.indent3 {
+  margin-left: 40px;
+}
+
+.indent4 {
+  margin-left: 60px;
+}
+
+.indent5 {
+  margin-left: 80px;
+}
+
+.devinfoUl {
+  margin-top: 16px;
+  padding-left: 20px;
+}
+
+@media screen and (max-width: 770px) {
+  .devinfoContents {
+    width: 100%;
+  }
+
+  .devinfoSidebar {
+    display: none;
+  }
+
+  .isMobileBlock {
+    display: block;
+  }
 }
