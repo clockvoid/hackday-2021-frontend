@@ -110,11 +110,12 @@ function App() {
             </footer>
           </div>
         </Route>
-        <Switch>
-            <div className="App">
-              <Header />
-              <main className="main">
-                <div className="mainInner">
+        <Route path="/">
+          <div className="App">
+            <Header />
+            <main className="main">
+              <div className="mainInner">
+                <Switch>
                   <Route path="/result">
                     <ResultList results={results} file={file} />
                   </Route>
@@ -122,23 +123,24 @@ function App() {
                     { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
                     { mode === InitialMode && <FileUploader setFile={setFile} /> }
                   </Route>
-                </div>
-                <div className="mainImageContainer">
-                  <img src={gradient4} alt="" className="mainImageGradient4"/>
-                  <img src={gradient3} alt="" className="mainImageGradient3"/>
-                  <img src={gradient2} alt="" className="mainImageGradient2"/>
-                  <img src={gradient1} alt="" className="mainImageGradient1"/>
-                </div>
-              </main>
-              <footer className="footer">
-                <p className="footerText">
-                  総務省から提供されている
-                  <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
-                  を基に形式をチェックしています
-                </p>
-              </footer>
-            </div>
-        </Switch>
+                </Switch>
+              </div>
+              <div className="mainImageContainer">
+                <img src={gradient4} alt="" className="mainImageGradient4"/>
+                <img src={gradient3} alt="" className="mainImageGradient3"/>
+                <img src={gradient2} alt="" className="mainImageGradient2"/>
+                <img src={gradient1} alt="" className="mainImageGradient1"/>
+              </div>
+            </main>
+            <footer className="footer">
+              <p className="footerText">
+                総務省から提供されている
+                <a href="https://www.soumu.go.jp/main_content/000723626.pdf" target="_blank" rel="noopener noreferrer" className="footerLink">機械判読可能な統計表の統一ルール</a>
+                を基に形式をチェックしています
+              </p>
+            </footer>
+          </div>
+        </Route>
       </Switch>
     </>
   );
