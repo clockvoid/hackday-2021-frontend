@@ -14,7 +14,7 @@ const Devinfo = () => {
             <h2 className="devinfoH2">Open Data Linter 開発者向け情報</h2>
             <h3 className="devinfoH3" id="api">API 情報</h3>
             <p className="devinfoP24">
-              <code className="devinfoCode">curl -X POST -F file=@./samples/nb01h0013.csv -H 'Content-Type:multipart/form-data' https://opendatalinter.volare.site</code>
+              <code className="devinfoCode">curl -X POST -F file=@./sample.csv -H 'Content-Type:multipart/form-data' https://opendatalinter.volare.site</code>
             </p>
             <h4 className="devinfoH4">Reqeust Header</h4>
             <table className="devinfoTable" cellSpacing={0}>
@@ -47,7 +47,9 @@ const Devinfo = () => {
               </tbody>
             </table>
             <h4 className="devinfoH4">Response</h4>
-            <p className="devinfoP16">List[Check]</p>
+            <pre className="devinfoPre">
+            List[Check]
+            </pre>
             <h4 className="devinfoH4">Models</h4>
             <p className="devinfoP16 devinfoBold">Check</p>
             <table className="devinfoTable mt8 isBlock" cellSpacing={0}>
@@ -143,33 +145,27 @@ const Devinfo = () => {
             <h3 className="devinfoH3" id="oss">Open Data linter OSS</h3>
             <ul className="devinfoUl">
               <li>
-                Linter のソースコードを公開している
+                Linter の<a href="https://github.com/volare-all/open-data-linter" target="_blank" rel="noopener noreferrer" className="footerLink">ソースコード</a>を公開しています
                 <ul>
                   <li>
-                    <a href="https://github.com/volare-all/open-data-linter" target="_blank" rel="noopener noreferrer" className="footerLink">https://github.com/volare-all/open-data-linter</a>
+                    issue の起票や commit お待ちしてます
                   </li>
                 </ul>
               </li>
-              <li>issue, pull request お待ちしてます</li>
               <li>
-                各項目のチェック方法もドキュメントとして公開してます
-                <ul>
-                  <li>
-                    <a href="https://volare-all.github.io/open-data-linter-docs/" target="_blank" rel="noopener noreferrer" className="footerLink">wikiへのリンク</a>
-                  </li>
-                </ul>
+                各項目のチェック方法も<a href="https://volare-all.github.io/open-data-linter-docs/" target="_blank" rel="noopener noreferrer" className="footerLink">ドキュメント</a>として公開してます
               </li>
             </ul>
             <h3 className="devinfoH3" id="excel">Excel Add in</h3>
             <ul className="devinfoUl">
               <li>
-                <a href="https://github.com/clockvoid/opendatalinter-office-add-in/blob/main/manifest-opendataliter.xml" target="_blank" rel="noopener noreferrer" className="footerLink">
-                  manifest.xmlへのリンク
+                <a href={"/"} target="_blank" rel="noopener noreferrer" className="footerLink">
+                  Excel Onlineでのアドインのインストール方法
                 </a>
               </li>
               <li>
-                <a href={"/"} target="_blank" rel="noopener noreferrer" className="footerLink">
-                  Excel Onlineでのアドインのインストール方法
+                <a href="https://github.com/clockvoid/opendatalinter-office-add-in/blob/main/manifest-opendataliter.xml" target="_blank" rel="noopener noreferrer" className="footerLink">
+                  manifest.xmlへのリンク
                 </a>
               </li>
             </ul>

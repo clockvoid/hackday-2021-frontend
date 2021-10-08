@@ -1,6 +1,6 @@
 /* App */
 .App {
-  background-color: #F3F2ED;
+  background-color: #f3f2ed;
   color: rgba(0, 0, 0, 0.87);
   display: flex;
   flex-direction: column;
@@ -213,7 +213,7 @@
   text-decoration: none;
 }
 
-.headerLinkWapper { 
+.headerLinkWapper {
   display: block;
 }
 
@@ -237,13 +237,13 @@
 }
 
 .headerLinkbuttonMobile:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .headerDropDownWapper {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(50px);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -268,7 +268,7 @@
 }
 
 @media screen and (max-width: 770px) {
-  .headerLinkWapper { 
+  .headerLinkWapper {
     display: none;
   }
   .headerLinkWapperMobile {
@@ -289,7 +289,7 @@
 .fileUploader {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(50px);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 16px;
   padding: 16px;
   width: calc(100% - 32px);
@@ -313,7 +313,7 @@
 
 .fileUploaderbutton {
   background: rgba(255, 255, 255, 0.4);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: calc(37px / 2);
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
@@ -341,7 +341,7 @@
 .fileUploaderDropdown {
   align-items: center;
   background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   bottom: 0;
   display: flex;
@@ -362,8 +362,8 @@
 .uploadProgress {
   align-items: center;
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur( 50px);
-  border: 1px solid #FFFFFF;
+  backdrop-filter: blur(50px);
+  border: 1px solid #ffffff;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -382,7 +382,7 @@
 .uploadProgressItem {
   align-items: center;
   background: rgba(255, 255, 255, 0.5);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   display: flex;
   margin-top: 16px;
   padding: 16px;
@@ -414,7 +414,7 @@
 }
 
 .uploadProgressBar {
-  background-color: #55C500;
+  background-color: #55c500;
   max-width: 100%;
 }
 
@@ -426,8 +426,8 @@
 .resultList {
   align-items: center;
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur( 50px);
-  border: 1px solid #FFFFFF;
+  backdrop-filter: blur(50px);
+  border: 1px solid #ffffff;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
@@ -468,7 +468,7 @@
 .resultListListLabel {
   align-items: center;
   background: none;
-  border: none  ;
+  border: none;
   display: flex;
   padding: 0;
 }
@@ -486,16 +486,16 @@
 
 @keyframes waiting {
   0% {
-    transform:rotate(0);
+    transform: rotate(0);
   }
   100% {
-    transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .resultListListIconWaiting {
   animation: 1.5s linear infinite waiting;
-  background: linear-gradient(#6E6F70,#FFFFFF 80%);
+  background: linear-gradient(#6e6f70, #ffffff 80%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: rgba(0, 0, 0, 0.6);
@@ -509,10 +509,10 @@
 
 .resultListListIconChecked {
   animation: 0.4s linear checked;
-  color: #55C500;
+  color: #55c500;
   position: relative;
   transform: scale(1);
-  transition: all 0.2s ease ;
+  transition: all 0.2s ease;
 }
 
 @keyframes checkbackground {
@@ -527,12 +527,11 @@
     transform: scale(2);
     opacity: 0;
   }
-  
 }
 
 .resultListListIconChecked::before {
   animation: 0.3s linear checkbackground;
-  background-color: #55C500;
+  background-color: #55c500;
   border-radius: 50%;
   content: "";
   height: 24px;
@@ -547,7 +546,7 @@
 
 .resultListListIconBlocked {
   color: rgba(0, 0, 0, 0.6);
-  transition: all 0.2s ease ;
+  transition: all 0.2s ease;
 }
 
 @keyframes error {
@@ -585,9 +584,9 @@
 
 .resultListListIconError {
   animation: 0.4s linear error;
-  color: #D60A34;
+  color: #d60a34;
   transform: perspective(1px) translateZ(0);
-  transition: all 0.2s ease ;
+  transition: all 0.2s ease;
 }
 
 .resultListListTitle {
@@ -609,7 +608,7 @@
 }
 
 .resultListListContentsErrorTitle {
-  color: #D60A34;
+  color: #d60a34;
   font-size: 14px;
   font-weight: 600;
   margin: 0;
@@ -621,14 +620,14 @@
 }
 
 .resultListListContentsError {
-  color: #D60A34;
+  color: #d60a34;
   font-size: 14px;
   margin: 0 8px 0 0;
 }
 
 /* Devinfo */
 .AppDevinfo {
-  background-color: #F3F2ED;
+  background-color: #f3f2ed;
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
   line-height: 1.8;
@@ -695,7 +694,7 @@
   position: fixed;
   top: 50%;
   transform-style: preserve-3d;
-  transform:  translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   width: 100%;
 }
 
@@ -731,8 +730,8 @@
 
 .devinfoCode {
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur( 50px);
-  border: 1px solid #FFFFFF;
+  backdrop-filter: blur(50px);
+  border: 1px solid #ffffff;
   padding: 1px;
   line-height: 1.5;
   word-break: break-all;
@@ -740,8 +739,8 @@
 
 .devinfoTable {
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur( 50px);
-  border: 1px solid #FFFFFF;
+  backdrop-filter: blur(50px);
+  border: 1px solid #ffffff;
   margin-top: 16px;
   overflow: auto;
   text-align: left;
@@ -761,8 +760,8 @@
 .devinfoPre {
   margin-top: 16px;
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur( 50px);
-  border: 1px solid #FFFFFF;
+  backdrop-filter: blur(50px);
+  border: 1px solid #ffffff;
   padding: 16px;
   line-height: 1.5;
   font-size: 14px;
@@ -770,7 +769,7 @@
 }
 
 .devinfoBold {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .mt8 {
