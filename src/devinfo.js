@@ -156,12 +156,20 @@ const Devinfo = () => {
                 各項目のチェック方法も<a href="https://volare-all.github.io/open-data-linter-docs/" target="_blank" rel="noopener noreferrer" className="footerLink">ドキュメント</a>として公開してます
               </li>
             </ul>
-            <h3 className="devinfoH3" id="excel">Excel Add in</h3>
+            <h3 className="devinfoH3" id="excel">Excel Add-in</h3>
             <ul className="devinfoUl">
               <li>
-                <a href={"/"} target="_blank" rel="noopener noreferrer" className="footerLink">
+                <a href="https://drive.google.com/file/d/1d-ZxsRDnStGkzOBG4q1-vfL5vgknj1RK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="footerLink">
                   Excel Onlineでのアドインのインストール方法
                 </a>
+                <ul className="devinfoUl">
+                  <li>
+                    デスクトップ版のExcelを持っていない方でも，無料で使えるExcel Onlineを使用してExcel Add-inをお試しいただけます．
+                  </li>
+                  <li>
+                    評価版のため，インストールには少しお手間がかかります．こちらのリンクに手順書を用意しておりますので，ぜひご確認いただき，お試しください．
+                  </li>
+                </ul>
               </li>
               <li>
                 <a href="https://github.com/clockvoid/opendatalinter-office-add-in/blob/main/manifest-opendataliter.xml" target="_blank" rel="noopener noreferrer" className="footerLink">
@@ -173,7 +181,7 @@ const Devinfo = () => {
           <div className="devinfoSidebar">
             <a href="#api" className="devinfoSidebarLink">API情報</a>
             <a href="#oss" className="devinfoSidebarLink">Open Data linter OSS</a>
-            <a href="#excel" className="devinfoSidebarLink">Excel Add in</a>
+            <a href="#excel" className="devinfoSidebarLink">Excel Add-in</a>
           </div>
         </div>
         <div className="devinfoImageContainer">
