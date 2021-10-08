@@ -90,11 +90,16 @@ function App() {
     <>
       <Switch>
         <Route path="/devinfo">
-          <div className="AppDevinfo">
+          <Devinfo />
+        </Route>
+        <Route path="/result">
+          <div className="App">
             <Header />
-            <main className="devinfoMain">
-              <Devinfo />
-              <div className="devinfoImageContainer">
+            <main className="main">
+              <div className="mainInner">
+                <ResultList results={results} file={file} />
+              </div>
+              <div className="mainImageContainer">
                 <img src={gradient4} alt="" className="mainImageGradient4"/>
                 <img src={gradient3} alt="" className="mainImageGradient3"/>
                 <img src={gradient2} alt="" className="mainImageGradient2"/>
@@ -115,15 +120,8 @@ function App() {
             <Header />
             <main className="main">
               <div className="mainInner">
-                <Switch>
-                  <Route path="/result">
-                    <ResultList results={results} file={file} />
-                  </Route>
-                  <Route exact path="/">
-                    { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
-                    { mode === InitialMode && <FileUploader setFile={setFile} /> }
-                  </Route>
-                </Switch>
+                { mode === UploadMode && <UploadProgress uploadProgress={uploadProgress} file={file} /> }
+                { mode === InitialMode && <FileUploader setFile={setFile} /> }
               </div>
               <div className="mainImageContainer">
                 <img src={gradient4} alt="" className="mainImageGradient4"/>
