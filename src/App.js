@@ -55,6 +55,28 @@ function App() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  const applyResult = async (newResult, loadTime) => {
+    let minTime = 200;
+    if (loadTime > minTime) minTime = 0;
+
+    const shiftedWaitTime = initialResult.map((time, index) => {
+      return index * 100;
+    });
+
+    let time = 0;
+    while (time < Math.max(...shiftedWaitTime)) {
+      let tmpResult = [...initialResult];
+      await sleep(5);
+      time += 5;
+      for (let i = 0; i < shiftedWaitTime.length; i++) {
+        if (time >= shiftedWaitTime[i]) {
+          tmpResult[i] = newResult[i];
+        }
+      }
+      setResults(tmpResult);
+    }
+  }
+
   useEffect(() => {
     if (file === undefined || file === null) {
       return;
@@ -65,6 +87,7 @@ function App() {
 
     const submitData = new FormData();
     submitData.append("file", file);
+    let uploadDone;
     axios.request({
       method: 'post',
       url: 'https://opendatalinter.volare.site/',
@@ -73,13 +96,16 @@ function App() {
         setUploadProgress(e.loaded / e.total * 100);
         if (e.loaded === e.total) {
           sleep(50).then(() => {
+            uploadDone = Date.now();
             setMode(InitialMode);
             history.push("/result");
           });
         }
       }
     }).then(data => {
-      setResults(data.data);
+      const newResult = data.data;
+      const responseDone = Date.now();
+      applyResult(newResult, responseDone - uploadDone);
     }).catch(error => {
     });
   // setInitialResultとhistoryを更新しているが，無限ループにはならないので無視
