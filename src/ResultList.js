@@ -5,7 +5,7 @@ const ResultList = (props) => {
   let history = useHistory();
 
   return (
-    <div>
+    <div className="resultListWrapper">
       <div className="resultList">
         <h2 className="resultListHeadline">形式チェック</h2>
         <p className="resultListDescription">{ props.file !== undefined && props.file.name }</p>
@@ -71,7 +71,7 @@ const ResultItem = (props) => {
           <div className="resultListListContents" style={accordion ? ({ display: "block" }) : ({ display: "none" })} key={key + "14"}>
             <div className="resultListListContentsErrors" key={key + "15"}>
               {cells.map((cell, index) =>
-                <span className="resultListListContentsError" key={key + "16" + index.toString()}>{cell[0]}行{cell[1]}列,</span>
+                <span className="resultListListContentsError" key={key + "16" + index.toString()}>{cell[0]}{cell[0] !== null && "行"}{cell[1]}{cell[1] !== null && "列"},</span>
               )}
             </div>
           </div>
@@ -90,8 +90,8 @@ const ResultItem = (props) => {
         <div className="resultListListContents" key={key + "22"} style={accordion ? ({ display: "block" }) : ({ display: "none" })}>
           <p className="resultListListContentsErrorTitle" key={key + "23"}>{message}</p>
           <div className="resultListListContentsErrors" key={key + "24"}>
-            {cells.slice(0, 30).map((cell, index) =>
-              <span className="resultListListContentsError" key={key + "25" + index.toString()}>{cell[0]}行 {cell[1]}列,</span>
+            {cells.map((cell, index) =>
+              <span className="resultListListContentsError" key={key + "25" + index.toString()}>{cell[0]}{cell[0] !== null && "行"}{cell[1]}{cell[1] !== null && "列"},</span>
             )}
           </div>
         </div>
