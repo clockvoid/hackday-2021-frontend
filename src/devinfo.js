@@ -172,15 +172,13 @@ const Devinfo = () => {
                 </ul>
               </li>
               <li>
-                <a href="https://drive.google.com/file/d/1d-ZxsRDnStGkzOBG4q1-vfL5vgknj1RK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="footerLink">
-                  デスクトップ版Excelでのアドインのインストール方法
-                </a>
+                デスクトップ版Excelでのアドインのインストール方法
                 <ul className="devinfoUl">
                   <li>
                     Excel WindowsやExcel macOSでアドインを動かすことも可能です．下のmanifest.xmlが必要です．予め保存しておいてください．
                   </li>
                   <li>
-                    <a href="https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins#share-a-folder" target="_blank" rel="noopener noreferrer" className="footerLink">
+                    <a href="https://drive.google.com/file/d/1Em4z-XiVN3aHBGCGBeJfnHcUnQ4pt9Vx/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="footerLink">
                       Excel on Windowsでのアドインのインストール方法
                     </a>
                   </li>
