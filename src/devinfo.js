@@ -48,7 +48,7 @@ const Devinfo = () => {
             </table>
             <h4 className="devinfoH4">Response</h4>
             <pre className="devinfoPre">
-            List[Check]
+              List[Check]
             </pre>
             <h4 className="devinfoH4">Models</h4>
             <p className="devinfoP16 devinfoBold">Check</p>
@@ -157,7 +157,7 @@ const Devinfo = () => {
               </li>
             </ul>
             <h3 className="devinfoH3" id="excel">Excel Add-in</h3>
-            <ul className="devinfoUl">
+            <ul>
               <li>
                 <a href="https://drive.google.com/file/d/1d-ZxsRDnStGkzOBG4q1-vfL5vgknj1RK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="footerLink">
                   Excel Onlineでのアドインのインストール方法
@@ -168,6 +168,26 @@ const Devinfo = () => {
                   </li>
                   <li>
                     評価版のため，インストールには少しお手間がかかります．こちらのリンクに手順書を用意しておりますので，ぜひご確認いただき，お試しください．
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="https://drive.google.com/file/d/1d-ZxsRDnStGkzOBG4q1-vfL5vgknj1RK/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="footerLink">
+                  デスクトップ版Excelでのアドインのインストール方法
+                </a>
+                <ul className="devinfoUl">
+                  <li>
+                    Excel WindowsやExcel macOSでアドインを動かすことも可能です．下のmanifest.xmlが必要です．予め保存しておいてください．
+                  </li>
+                  <li>
+                    <a href="https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins#share-a-folder" target="_blank" rel="noopener noreferrer" className="footerLink">
+                      Excel on Windowsでのアドインのインストール方法
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-an-office-add-in-on-ipad-and-mac#sideload-an-add-in-on-excel-or-word-on-ipad-using-macos-catalina" className="footerLink">
+                      Excel on macOSでのアドインのインストール方法
+                    </a>
                   </li>
                 </ul>
               </li>
