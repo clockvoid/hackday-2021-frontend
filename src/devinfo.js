@@ -185,7 +185,7 @@ const Devinfo = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-an-office-add-in-on-ipad-and-mac#sideload-an-add-in-on-excel-or-word-on-ipad-using-macos-catalina" className="footerLink">
+                    <a href="https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-an-office-add-in-on-ipad-and-mac#sideload-an-add-in-on-excel-or-word-on-ipad-using-macos-catalina" target="_blank" rel="noopener noreferrer" className="footerLink">
                       Excel on macOSでのアドインのインストール方法
                     </a>
                   </li>
